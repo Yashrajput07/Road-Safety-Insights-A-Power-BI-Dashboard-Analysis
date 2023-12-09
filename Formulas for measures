@@ -1,0 +1,23 @@
+Formulas Used in Measures
+
+Total Casualties and YoY Growth:
+
+1. Track Current Year To Date Casualties using the 'CY Casualties' measure.
+CY Casualties = TOTALYTD(SUM(Data[Number_of_Casualties]), 'Calendar'[Date])
+
+2. Calculate Previous Year Casualties with the 'PY Casualties' measure.
+PY Casualties = CALCULATE(SUM(Data[Number_of_Casualties]), SAMEPERIODLASTYEAR('Calendar'[Date]))
+
+3. Quantify Year-on-Year Growth of Casualties through the 'YoY Casualties' measure.
+YoY Casualties = ([CY Casualties] - [PY Casualties])/[PY Casualties]
+
+Total Accidents and YoY Growth:
+
+1. Determine Current Year Accidents Count using the 'CY Accidents Count' measure.
+CY Accidents Count = TOTALYTD(COUNT(Data[Accident_Index]), 'Calendar'[Date])
+
+2. Establish Previous Year Accidents Count with the 'PY Accidents Count' measure.
+PY Accidents Count = CALCULATE(COUNT(Data[Accident_Index]), SAMEPERIODLASTYEAR('Calendar'[Date]))
+
+3. Assess Year-on-Year Growth of Accidents using the 'YoY Accidents' measure.
+YoY Accidents = ([CY Accidents Count]-[PY Accidents Count])/[PY Accidents Count]
